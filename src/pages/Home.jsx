@@ -12,13 +12,14 @@ function Home() {
     const data = await getDocs(postsCollectionRed); 
     setPostList(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
     }
+    console.log(postList)
     getPosts();
-  });
+  },[]);
 
   return (
     <div className='homePage'>
       {postList.map(post => {
-        return <div className='post'>{post.title}</div>
+        return <div className='post' key={post.id}>{post.title}</div>
       })}
     </div>
   )

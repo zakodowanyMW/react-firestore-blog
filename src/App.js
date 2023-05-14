@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import { useState } from 'react';
 import {signOut} from 'firebase/auth';
 import { auth } from './firebase-config';
+import Home2 from './pages/Home2';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
       </nav>
       <Routes>
         <Route exact path='/' element={<Home />} />
+        <Route exact path='/home2' element={<Home2 />} />
         <Route exact path='/createpost' element={<CreatePost isAuth={isAuth}/>} />
         <Route exact path='/login' element={<Login setIsAuth={setIsAuth} />} />
       </Routes>
