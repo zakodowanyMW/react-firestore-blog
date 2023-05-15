@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {collection, getDocs} from 'firebase/firestore';
+import {collection, deleteDoc, doc, getDocs} from 'firebase/firestore';
 import { db } from '../firebase-config';
 
 function Home() {
@@ -14,12 +14,25 @@ function Home() {
     }
     console.log(postList)
     getPosts();
-  },[]);
+  },[]); // tu jest jakiś błąd w kodowaniu
+
+  const deletePost = async (id) => {
+    const postDoc = doc(db, "posts",id);
+    await deleteDoc(postDoc);
+  }
 
   return (
     <div className='homePage'>
       {postList.map(post => {
-        return <div className='post' key={post.id}>{post.title}</div>
+        return (
+          <div className="post">
+            <div className='deletePost'>
+              <button onClick={() => {deletePost(post.id)}}>Delete</button>
+            </div>
+            <div className='post' key={post.id}>{post.title}</div>
+            <p className='test'>tekst</p>
+          </div>
+        )
       })}
     </div>
   )
